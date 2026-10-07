@@ -18,12 +18,10 @@
           <div class="split-code-group">
             <input type="text" id="bookCodePrefix" name="bookCodePrefix" class="ant-input split-code-prefix"
               value="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}"
-              placeholder="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}" required
-              pattern="^{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}$"
-              title="Tiền tố bắt buộc: {{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}">
+              placeholder="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}" required>
             <span class="split-code-divider">-</span>
             <input type="text" id="bookCodeSuffix" name="bookCodeSuffix" class="ant-input split-code-suffix"
-              placeholder="BK01" required pattern="^[A-Za-z0-9_]+$" title="Nhập mã hậu tố (ví dụ: BK01)">
+              placeholder="BK01" required>
           </div>
           <input type="hidden" id="bookCode" name="bookCode" value="">
           <span class="field-hint" id="hintCode">Mã đầy đủ: <strong>{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}-...</strong></span>
