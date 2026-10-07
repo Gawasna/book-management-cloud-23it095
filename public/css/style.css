@@ -1,0 +1,564 @@
+/**
+ * UI/UX DESIGN SYSTEM STYLESHEET
+ * Based on: Student_Moving/specs/foundation/STD-UIUX-DESIGN-SYSTEM.md
+ * Layout: F-Pattern Operational Workbench (1/3 Form Centered | 2/3 Data Table)
+ * Theme: Light-only | Baseline: Ant Design 6.x Tokens & Patterns
+ */
+
+:root {
+  /* Color system - Ant Design enterprise base */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #fafafa;
+
+  --color-border: #d9dde3;
+  --color-border-strong: #b8bec7;
+  --color-divider: #e8eaed;
+
+  --color-text: #1f2328;
+  --color-text-secondary: #59636e;
+  --color-text-muted: #737d87;
+  --color-text-disabled: #a3aab2;
+
+  --color-primary: #2457a6;
+  --color-primary-hover: #1d4a91;
+  --color-primary-active: #173d78;
+
+  --color-success: #2f7d32;
+  --color-success-bg: #edf7ee;
+  --color-success-border: #b7eb8f;
+
+  --color-warning: #a66a00;
+  --color-warning-bg: #fffbe6;
+  --color-warning-border: #ffe58f;
+
+  --color-danger: #b42318;
+  --color-danger-bg: #fff1f0;
+  --color-danger-border: #ffa39e;
+
+  /* Typography tokens */
+  --font-family: Inter, "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Spacing system (Base: 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Radius tokens (Strictly restrained) */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+}
+
+/* Base Normalization */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Component */
+.app-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  height: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.brand-meta {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  padding: 1px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+}
+
+.header-status strong {
+  color: var(--color-text);
+}
+
+/* Main Content Area */
+.app-main {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Alerts */
+.alert-box {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.alert-success {
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+}
+
+.alert-danger {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+/* F-Pattern Workbench Layout (Left Side Center Dọc | Right Side Top-Down) */
+.workbench-layout {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+  /* Mặc định bám đỉnh */
+  flex: 1;
+}
+
+@media (max-width: 960px) {
+  .workbench-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .workbench-aside {
+    align-self: auto;
+  }
+}
+
+.workbench-aside {
+  width: 100%;
+}
+
+.workbench-main {
+  width: 100%;
+}
+
+/* Panel Structure (Border-driven) */
+.panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background-color: var(--color-surface-subtle);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panel-header-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.count-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background-color: #e2e8f0;
+  padding: 0 6px;
+  border-radius: 10px;
+  line-height: 16px;
+}
+
+.panel-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.panel-body {
+  padding: var(--space-3);
+}
+
+.panel-table-body {
+  overflow-x: auto;
+}
+
+/* Ant Design Form Controls */
+.ant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.form-required {
+  color: var(--color-danger);
+}
+
+.ant-input {
+  width: 100%;
+  height: 32px;
+  padding: 4px 9px;
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all 0.15s ease-in-out;
+}
+
+.ant-input:hover {
+  border-color: var(--color-primary-hover);
+}
+
+.ant-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(36, 87, 166, 0.15);
+}
+
+/* Split Book Code Input Group (2/5 Prefix - 3/5 Suffix) */
+.split-code-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.split-code-prefix {
+  flex: 2; /* 40% (2/5) */
+  min-width: 0;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.split-code-divider {
+  color: var(--color-text-secondary);
+  font-weight: 700;
+  font-size: 14px;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 32px;
+}
+
+.split-code-suffix {
+  flex: 3; /* 60% (3/5) */
+  min-width: 0;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* Validation Label Indications (Non-blocking informative feedback) */
+.field-hint {
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--color-text-muted);
+  transition: color 0.15s;
+}
+
+.hint-valid {
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+.hint-warning {
+  color: var(--color-warning);
+  font-weight: 500;
+}
+
+/* Form Actions */
+.form-actions-inline {
+  margin-top: 4px;
+}
+
+.edit-actions-group {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-buttons-row {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-flex {
+  flex: 1;
+}
+
+/* Delete Confirmation Badge (Ant Design Popconfirm style) */
+.delete-confirm-badge {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.confirm-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-danger);
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--space-3);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-default {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-default:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #991b1b;
+}
+
+.btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  height: 26px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+/* Ant Design Table & Row Selection */
+.ant-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ant-table th {
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.ant-table td {
+  padding: 7px 10px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.ant-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.selectable-row {
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.selectable-row:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.row-selected {
+  background-color: #eef4ff !important;
+  border-left: 3px solid var(--color-primary);
+}
+
+.col-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cell-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 0 4px;
+  border-radius: var(--radius-sm);
+}
+
+.cell-title {
+  font-weight: 500;
+}
+
+.cell-vat-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-warning);
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  padding: 0 4px;
+  border-radius: var(--radius-sm);
+}
+
+.cell-final-price {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.cell-date {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.ant-empty {
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.empty-text {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}

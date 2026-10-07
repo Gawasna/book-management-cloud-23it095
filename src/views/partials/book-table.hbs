@@ -1,0 +1,47 @@
+<section class="workbench-main">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-header-title">
+        <h2 class="panel-title">Danh Sách Sách</h2>
+        <span class="count-badge">{{bookCount}}</span>
+      </div>
+      <span class="panel-tag">Read</span>
+    </div>
+
+    <div class="panel-table-body">
+      {{#if books.length}}
+      <table class="ant-table">
+        <thead>
+          <tr>
+            <th>Mã Sách</th>
+            <th>Tựa Đề</th>
+            <th>Tác Giả</th>
+            <th class="col-num">Giá Gốc</th>
+            <th>VAT</th>
+            <th class="col-num">Sau Thuế</th>
+            <th>Thời Điểm</th>
+          </tr>
+        </thead>
+        <tbody id="booksTableBody">
+          {{#each books}}
+          <tr class="selectable-row" data-id="{{this._id}}" data-code="{{this.bookCode}}" data-title="{{this.title}}"
+            data-author="{{this.author}}" data-price="{{this.originalPrice}}">
+            <td><span class="cell-code">{{this.bookCode}}</span></td>
+            <td><span class="cell-title">{{this.title}}</span></td>
+            <td>{{this.author}}</td>
+            <td class="col-num">{{#if this.formattedOriginalPrice}}{{this.formattedOriginalPrice}}{{else}}{{this.originalPrice}}{{/if}} đ</td>
+            <td><span class="cell-vat-tag">{{this.vatRate}}%</span></td>
+            <td class="col-num"><span class="cell-final-price">{{#if this.formattedFinalPrice}}{{this.formattedFinalPrice}}{{else}}{{this.finalPrice}}{{/if}} đ</span></td>
+            <td class="cell-date">{{#if this.formattedDate}}{{this.formattedDate}}{{else}}{{this.createdAt}}{{/if}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{else}}
+      <div class="ant-empty">
+        <p class="empty-text">Chưa có dữ liệu sách.</p>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</section>

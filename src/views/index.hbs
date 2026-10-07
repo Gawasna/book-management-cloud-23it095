@@ -1,0 +1,18 @@
+{{#if successMsg}}
+<div class="alert-box alert-success">
+  <span>{{successMsg}}</span>
+</div>
+{{/if}}
+
+{{#if errorMsg}}
+<div class="alert-box alert-danger">
+  <span>{{errorMsg}}</span>
+</div>
+{{/if}}
+
+<div class="workbench-layout" id="workbenchLayout">
+  {{> book-form}}
+  {{> book-table}}
+</div>
+
+<script src="/js/workbench.js"></script>
