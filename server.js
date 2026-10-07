@@ -2,10 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
+const configureSession = require('./src/config/session');
 const bookRoutes = require('./src/routes/bookRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 34080;
+
+// Trust reverse proxy (Render PaaS TLS termination)
+app.set('trust proxy', 1);
 
 // 1. Template Engine - Handlebars
 app.engine('hbs', engine({
@@ -31,7 +35,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 3. Global Template Variables (Truyen thong tin sinh vien & VAT vao moi view de hien Footer)
+// 3. Stateless Session Middleware (Cloud Atlas connect-mongo)
+app.use(configureSession());
+
+// 4. Global Template Variables (Truyen thong tin sinh vien & VAT vao moi view de hien Footer)
 app.use((req, res, next) => {
   res.locals.studentName = process.env.STUDENT_NAME || 'Lê Phi Hùng';
   res.locals.studentId = process.env.STUDENT_ID || '23IT095';
