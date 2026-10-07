@@ -1,0 +1,79 @@
+<aside class="workbench-aside" id="workbenchAside">
+  <div class="panel">
+    <div class="panel-header">
+      <h2 class="panel-title" id="formPanelTitle">Thêm Sách</h2>
+      <span class="panel-tag" id="formPanelTag">Write</span>
+    </div>
+
+    <div class="panel-body">
+      <form id="bookForm" action="/books" method="POST" class="ant-form"
+        data-required-prefix="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}"
+        data-vat-rate="{{#if vatRate}}{{vatRate}}{{else}}9{{/if}}">
+        <input type="hidden" id="bookId" name="id" value="">
+
+        <div class="form-item">
+          <label class="form-label">
+            Mã Sách <span class="form-required">*</span>
+          </label>
+          <div class="split-code-group">
+            <input type="text" id="bookCodePrefix" name="bookCodePrefix" class="ant-input split-code-prefix"
+              value="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}"
+              placeholder="{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}" required
+              pattern="^{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}$"
+              title="Tiền tố bắt buộc: {{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}">
+            <span class="split-code-divider">-</span>
+            <input type="text" id="bookCodeSuffix" name="bookCodeSuffix" class="ant-input split-code-suffix"
+              placeholder="BK01" required pattern="^[A-Za-z0-9_]+$" title="Nhập mã hậu tố (ví dụ: BK01)">
+          </div>
+          <input type="hidden" id="bookCode" name="bookCode" value="">
+          <span class="field-hint" id="hintCode">Mã đầy đủ: <strong>{{#if requiredPrefix}}{{requiredPrefix}}{{else}}095{{/if}}-...</strong></span>
+        </div>
+
+        <div class="form-item">
+          <label for="title" class="form-label">
+            Tựa Đề <span class="form-required">*</span>
+          </label>
+          <input type="text" id="title" name="title" class="ant-input" placeholder="Tên quyển sách" required>
+          <span class="field-hint" id="hintTitle">Tựa đề hiển thị trong danh mục</span>
+        </div>
+
+        <div class="form-item">
+          <label for="author" class="form-label">
+            Tác Giả <span class="form-required">*</span>
+          </label>
+          <input type="text" id="author" name="author" class="ant-input" placeholder="Tên tác giả" required>
+          <span class="field-hint" id="hintAuthor">Tên tác giả hoặc đơn vị biên tập</span>
+        </div>
+
+        <div class="form-item">
+          <label for="originalPrice" class="form-label">
+            Giá Gốc (VNĐ) <span class="form-required">*</span>
+          </label>
+          <input type="number" id="originalPrice" name="originalPrice" class="ant-input" placeholder="100000" min="1000"
+            step="1000" required>
+          <span class="field-hint" id="hintPrice">+{{#if vatRate}}{{vatRate}}{{else}}9{{/if}}% VAT</span>
+        </div>
+
+        <div id="actionAdd" class="form-actions-inline">
+          <button type="submit" id="btnAdd" class="btn btn-primary btn-block">+ Thêm Sách</button>
+        </div>
+
+        <div id="actionEdit" class="edit-actions-group" style="display: none;">
+          <div class="action-buttons-row">
+            <button type="submit" id="btnUpdate" class="btn btn-primary btn-flex">Lưu Sửa</button>
+            <button type="button" id="btnDeleteTrigger" class="btn btn-danger btn-flex">Xóa</button>
+            <button type="button" id="btnCancel" class="btn btn-default">Hủy</button>
+          </div>
+
+          <div id="deleteConfirmBadge" class="delete-confirm-badge" style="display: none;">
+            <span class="confirm-text">Xác nhận xóa quyển sách này?</span>
+            <div class="confirm-buttons">
+              <button type="submit" formaction="/books/delete" class="btn btn-danger btn-sm">Đồng Ý Xóa</button>
+              <button type="button" id="btnCancelDelete" class="btn btn-default btn-sm">Không</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</aside>

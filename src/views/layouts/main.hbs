@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-container">
+        <div class="brand-section">
+          <span class="brand-title">Quản Lý Sách</span>
+        </div>
+        <div class="header-status">
+          <span class="status-dot"></span>
+          <span>Session: <strong>{{sessionViews}}</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      {{{body}}}
+    </main>
+  </div>
+</body>
+
+</html>
