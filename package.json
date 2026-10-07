@@ -1,0 +1,27 @@
+{
+  "name": "book-management-cloud",
+  "version": "1.0.0",
+  "description": "Cloud Computing Mid-Term Exam - Book Management Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test:conn": "node test-connection.js"
+  },
+  "keywords": [
+    "cloud-computing",
+    "mongodb-atlas",
+    "least-privilege",
+    "stateless-session"
+  ],
+  "author": "23IT095",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.9.5"
+  }
+}
